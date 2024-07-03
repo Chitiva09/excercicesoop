@@ -15,16 +15,9 @@ public class LibraryInventory {
         while (optionIntroduction != SwitchEnum.GO_OUT) {
 
             if ((book == null) && (magazine == null)) {
-
                 Message.createAcount();
                 nameUser = (scan.nextLine());
-
-                Message.introduction(nameUser);
-                optionIntroduction = SwitchEnum.fromInt(scan.nextInt());scan.nextLine();
-                Options options = new Options(optionIntroduction);
-
                 Message message = new Message(nameUser);
-
             }
 
             Message.optionsUser(nameUser);
@@ -33,22 +26,31 @@ public class LibraryInventory {
             scan.close();
             start = options.boop();
             switch (start) {
-                case MainSwitchEnum.OPERATION_SUCCES -> {
+                case OPERATION_SUCCES -> {
+                    Message.operationSucces(nameUser);
+                }
+                case GO_OUT -> {
+                    Message.goOut(nameUser);
+                    break;
+                }
+
+                case IMPROPER_OPERATION -> {
+                    Message.improperOperation(nameUser);
+                }
+                case OPTION_NOT_FOUND -> {
 
                 }
-                case MainSwitchEnum.SALIR -> {
+                case NO_MAGAZINE-> {
+                    Message.magazinesError(nameUser);
 
                 }
-
-                case MainSwitchEnum.IMPROPER_OPERATION -> {
-
-                }
-                case MainSwitchEnum.OPTION_NOT_FOUND -> {
+                case NO_BOOKS->{
+                    Message.booksError(nameUser);
 
                 }
                 default -> {
 
-                    Message.optionsUser(nameUser);
+                    Message.improperOperation(nameUser);
                 }
 
             }

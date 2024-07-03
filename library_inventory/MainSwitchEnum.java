@@ -9,9 +9,10 @@ public enum MainSwitchEnum {
 
     */
 OPERATION_SUCCES,
-SALIR,
 IMPROPER_OPERATION,
 OPTION_NOT_FOUND,
+NO_MAGAZINE,
+NO_BOOKS,
 GO_OUT;
 
 }

@@ -21,14 +21,13 @@ public class Options {
 
     public Options(SwitchEnum optionIntroduction) {
         this.optionSwitcIntro = optionIntroduction;
-    }
 
-    
+    }
 
     public MainSwitchEnum boop() {
         switch (optionSwitcIntro) {
 
-            case SwitchEnum.CREATE_MAGAZINE -> {
+            case CREATE_MAGAZINE -> {
 
                 System.out.println("Cual es el titulo de su revista?");
                 title = scan.nextLine();
@@ -42,7 +41,7 @@ public class Options {
 
                 return MainSwitchEnum.OPERATION_SUCCES;
             }
-            case SwitchEnum.CREATE_BOOK -> {
+            case CREATE_BOOK -> {
                 System.out.println("Cual es el titulo de su libro?");
                 title = scan.nextLine();
                 System.out.println("Cual es el año de publicacion de ?" + title);
@@ -58,54 +57,74 @@ public class Options {
                 return MainSwitchEnum.OPERATION_SUCCES;
             }
 
-            case SwitchEnum.SHOW_ALL_MAGAZINES -> {
+            case SHOW_ALL_MAGAZINES -> {
 
-                System.out.printf(" ------------------------------------------------------------------------------------ ");
-                System.out.printf("|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |");
-                System.out.printf("|------------------------------------------------------------------------------------|");
-             
+                if (books == null || magazines == null) {
+                    return MainSwitchEnum.NO_MAGAZINE;
 
-                for ( Magazine magazine : magazines){
-                    System.out.printf("|      %s      |    %d    |    %d   |%n", magazine.getTitle(), magazine.getPublicationYear(), magazine.getNumEdition() );
+                } else {
 
+                    System.out.printf(
+                            " ------------------------------------------------------------------------------------ ");
+                    System.out.printf(
+                            "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |");
+                    System.out.printf(
+                            "|------------------------------------------------------------------------------------|");
+
+                    for (Magazine magazine : magazines) {
+                        System.out.printf("|      %s      |    %d    |    %d   |%n", magazine.getTitle(),
+                                magazine.getPublicationYear(), magazine.getNumEdition());
+
+                    }
+
+                    return MainSwitchEnum.OPERATION_SUCCES;
                 }
-
-                return MainSwitchEnum.OPERATION_SUCCES;
             }
 
-            case SwitchEnum.SHOW_ALL_BOOKS -> {
-                
-                System.out.printf(" -------------------------------------------------------------------------------------------------------- ");
-                System.out.printf("|      NOMBRE DEL LIBRO     |    AÑO DE PUBLICACION    |      NUMERO DE ISBN         |      AUTOR        | ");
-                System.out.printf("|--------------------------------------------------------------------------------------------------------|");
-             
+            case SHOW_ALL_BOOKS -> {
 
-                for ( Book book : books){
-                    System.out.printf("|      %s      |    %d    |    %d   |   %S   |%n", book.getTitle(), book.getPublicationYear(), book.getNumberIsbn(), book.getAuthor());
+                if (books == null) {
+                    return MainSwitchEnum.NO_MAGAZINE;
 
+                } else {
+
+                    System.out.printf(
+                            " -------------------------------------------------------------------------------------------------------- ");
+                    System.out.printf(
+                            "|      NOMBRE DEL LIBRO     |    AÑO DE PUBLICACION    |      NUMERO DE ISBN         |      AUTOR        | ");
+                    System.out.printf(
+                            "|--------------------------------------------------------------------------------------------------------|");
+
+                    for (Book book : books) {
+                        System.out.printf("|      %s      |    %d    |    %d   |   %S   |%n", book.getTitle(),
+                                book.getPublicationYear(), book.getNumberIsbn(), book.getAuthor());
+
+                    }
+
+                    return MainSwitchEnum.OPERATION_SUCCES;
                 }
- 
-
-                return MainSwitchEnum.OPERATION_SUCCES;
             }
             case SwitchEnum.SHOW_SPECIFIC_MAGAZINE -> {
+                if (books == null || magazines == null) {
+                    return MainSwitchEnum.NO_MAGAZINE;
 
+                } else {
 
+                    for (Magazine magazine : magazines) {
 
-                for ( Magazine magazine : magazines) {
-                    
+                    }
 
-
+                    return MainSwitchEnum.OPERATION_SUCCES;
                 }
-
-
-
-
-                return MainSwitchEnum.OPERATION_SUCCES;
             }
-            case SwitchEnum.SHOW_SPECIFIC_BOOK -> {
+            case SHOW_SPECIFIC_BOOK -> {
+                if (books == null) {
+                    return MainSwitchEnum.NO_MAGAZINE;
 
-                return MainSwitchEnum.OPERATION_SUCCES;
+                } else {
+
+                    return MainSwitchEnum.OPERATION_SUCCES;
+                }
             }
             case GO_OUT -> {
 

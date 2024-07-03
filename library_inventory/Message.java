@@ -14,19 +14,40 @@ public class Message {
         System.out.println(" ------------------------------------------------- ");
 
     }
+    public static void goOut(String userName) {
 
-    public static void introduction(String userName) {
-
-        System.out.printf(" ------------------------------------------------------------\n");
-        System.out.printf("|     ¿que opcion deseas registrar %s                        |\n", userName);
-        System.out.printf("|------------------------------------------------------------|\n");
-        System.out.printf("| 1. Libro                                                   |\n");
-        System.out.printf("|------------------------------------------------------------|\n");
-        System.out.printf("| 2. Revista                                                 |\n");
-        System.out.printf("|------------------------------------------------------------|\n");
-        System.out.printf("| 3. Cancelar operacion y salir                              |\n");
-        System.out.printf(" ------------------------------------------------------------ \n");
+        System.out.printf(" ------------------------------:)--------------------------------\n");
+        System.out.printf("|                          HASTA PRONTO %S                       |\n", userName);
+        System.out.printf(" ---------------------------------------------------------------- \n");
     }
+    
+    public static void improperOperation (String userName) {
+
+        System.out.printf(" ------------------------------:)--------------------------------\n");
+        System.out.printf("|         %s ud ha ingresado una opcion incorrecta               |\n", userName);
+        System.out.printf(" ---------------------------------------------------------------- \n");
+    }
+   
+    public static void operationSucces(String userName) {
+
+        System.out.printf(" ------------------------------:)--------------------------------\n");
+        System.out.printf("|           Su solicitud se a realizado con exito %s             |\n", userName);
+        System.out.printf(" ---------------------------------------------------------------- \n");
+    }
+
+    public static void booksError(String userName) {
+
+        System.out.printf(" -----------------------------ERROR-------------------------------\n");
+        System.out.printf("|              USUARI@ %s NO HAY LIBROS REGISTRADOS               |\n", userName);
+        System.out.printf(" ----------------------------------------------------------------- \n");
+    }
+    public static void magazinesError(String userName) {
+
+        System.out.printf(" -----------------------------ERROR-------------------------------\n");
+        System.out.printf("|             USUARI@ %s NO HAY REVISTAS REGISTRADAS              |\n", userName);
+        System.out.printf(" ----------------------------------------------------------------- \n");
+    }
+
 
     public static void optionsUser(String userName) {
         System.out.printf(" -------------------------------------------------------------\n");
