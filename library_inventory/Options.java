@@ -16,15 +16,18 @@ public class Options {
     private String toFind;
 
     Scanner scan = new Scanner(System.in);
-    Book book = null;
-    List<Magazine> magazines = new ArrayList<>();
-    List<Book> books = new ArrayList<>();
+    Book book = null;// este me sirve para inocializar el objeto book en null
+    Magazine magazine = null; //  este me sirve para inocializar el objeto magazine en null
+    List<Magazine> magazines = new ArrayList<>(); // inicializacion del list magazines
+    List<Book> books = new ArrayList<>();//inicializacion del list books
 
+    //constructr para traer por parametro la opcion para ingresar en  el switch
     public Options(SwitchEnum optionIntroduction) {
         this.optionSwitcIntro = optionIntroduction;
 
     }
 
+    //metodo para el switch que llame boop
     public MainSwitchEnum boop() {
         switch (optionSwitcIntro) {
 
@@ -41,7 +44,7 @@ public class Options {
               
 
                 Magazine magazine = new Magazine(title, publicationYear, numEdition);
-                magazines.add(magazine);
+                magazines.add(magazine);// meto la informacion del objeto magazine en el list magazines
 
                 return MainSwitchEnum.OPERATION_SUCCES;
             }
@@ -56,13 +59,13 @@ public class Options {
                 author = scan.nextLine();
 
                 Book book = new Book(title, publicationYear, numberIsbn, author);
-                books.add(book);
+                books.add(book);// meto la informacion del objeto book en el list books
 
                 return MainSwitchEnum.OPERATION_SUCCES;
             }
 
             case SHOW_ALL_MAGAZINES -> {
-
+                // con este if si el list magazines esta en null retorna un mensaje en el cual dice que list no tiene informacion
                 if ( magazines == null) {
                     return MainSwitchEnum.NO_MAGAZINE;
 
