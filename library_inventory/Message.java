@@ -47,23 +47,52 @@ public class Message {
         System.out.printf("|             USUARI@ %s NO HAY REVISTAS REGISTRADAS              |\n", userName);
         System.out.printf(" ----------------------------------------------------------------- \n");
     }
+    public static void optionsToFindMagazine() {
+        System.out.println(" -------------------------------------------------------------");
+        System.out.println("|                  ¿Como desea buscar?                        |");
+        System.out.println("|-------------------------------------------------------------|");
+        System.out.println("| 1. Por titulo                                               |");
+        System.out.println("|-------------------------------------------------------------|");
+        System.out.println("| 2. Por año de publicacion                                   |");
+        System.out.println("|-------------------------------------------------------------|");
+        System.out.println("| 3. Por numero de edición                                    |");
+        System.out.println("|-------------------------------------------------------------|");
+        System.out.println("| 4. Cancelar operacion                                       |");
+        System.out.println(" ------------------------------------------------------------- ");
+       
+    }
+    public static void optionsToFindBook() {
+        System.out.print(" -------------------------------------------------------------");
+        System.out.print("|                  ¿Como desea buscar?                        |");
+        System.out.print("|-------------------------------------------------------------|");
+        System.out.print("| 1. Por titulo                                               |");
+        System.out.print("|-------------------------------------------------------------|");
+        System.out.print("| 2. Por año de publicacion                                   |");
+        System.out.print("|-------------------------------------------------------------|");
+        System.out.print("| 3. Por numero de ISBN                                       |");
+        System.out.print("|-------------------------------------------------------------|");
+        System.out.print("| 4. Por nombre de autor                                      |");
+        System.out.print("|-------------------------------------------------------------|");
+        System.out.print("| 5. Cancelar operacion                                       |");
+        System.out.print(" ------------------------------------------------------------- ");
+      
 
-
+    }
     public static void optionsUser(String userName) {
         System.out.printf(" -------------------------------------------------------------\n");
-        System.out.printf("|       ¿que opcion deseas realizar %s                        |\n" , userName);
+        System.out.printf("|       ¿que opcion deseas realizar  %s                       |\n" , userName);
         System.out.printf("|-------------------------------------------------------------|\n");
-        System.out.printf("| 1. Agregar nuevo libro                                      |\n");
+        System.out.printf("| 1. Agregar revista                                          |\n");
         System.out.printf("|-------------------------------------------------------------|\n");
-        System.out.printf("| 2. Agregar nueva revista                                    |\n");
+        System.out.printf("| 2. Agregar libro                                            |\n");
         System.out.printf("|-------------------------------------------------------------|\n");
-        System.out.printf("| 3. Mostrar todos los libros                                 |\n");
+        System.out.printf("| 3. Mostrar todos los revistas                               |\n");
         System.out.printf("|-------------------------------------------------------------|\n");
-        System.out.printf("| 4. Mostrar todas las revistas                               |\n");
+        System.out.printf("| 4. Mostrar todas las libros                                 |\n");
         System.out.printf("|-------------------------------------------------------------|\n");
-        System.out.printf("| 5. Buscar libro por numero ISBN                             |\n");
+        System.out.printf("| 5. Buscar libro                                             |\n");
         System.out.printf("|-------------------------------------------------------------|\n");
-        System.out.printf("| 6. Buscar revista por numero de edicion                     |\n");
+        System.out.printf("| 6. Buscar revista                                           |\n");
         System.out.printf("|-------------------------------------------------------------|\n");
         System.out.printf("| 7. Salir                                                    |\n");
         System.out.printf(" ------------------------------------------------------------- \n");

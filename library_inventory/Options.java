@@ -12,6 +12,7 @@ public class Options {
     private int numEdition;
     private int numberIsbn;
     private String author;
+    private int optionToFind;
     private String toFind;
 
     Scanner scan = new Scanner(System.in);
@@ -31,10 +32,13 @@ public class Options {
 
                 System.out.println("Cual es el titulo de su revista?");
                 title = scan.nextLine();
+                
                 System.out.println("Cual es el año de publicacion de ?" + title);
                 publicationYear = scan.nextInt();
+               
                 System.out.println("Cual es el numero de edicion de ?" + title);
                 numEdition = scan.nextInt();
+              
 
                 Magazine magazine = new Magazine(title, publicationYear, numEdition);
                 magazines.add(magazine);
@@ -59,21 +63,22 @@ public class Options {
 
             case SHOW_ALL_MAGAZINES -> {
 
-                if (books == null || magazines == null) {
+                if ( magazines == null) {
                     return MainSwitchEnum.NO_MAGAZINE;
 
                 } else {
 
                     System.out.printf(
-                            " ------------------------------------------------------------------------------------ ");
+                            " ------------------------------------------------------------------------------------ \n");
                     System.out.printf(
-                            "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |");
+                            "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |\n");
                     System.out.printf(
-                            "|------------------------------------------------------------------------------------|");
+                            "|------------------------------------------------------------------------------------|\n");
 
-                    for (Magazine magazine : magazines) {
-                        System.out.printf("|      %s      |    %d    |    %d   |%n", magazine.getTitle(),
-                                magazine.getPublicationYear(), magazine.getNumEdition());
+                    for (Magazine magazin : magazines) {
+                        System.out.println("entro al for");
+                        System.out.printf("|      %s      |    %d    |    %d   |%n", magazin.getTitle(),
+                                magazin.getPublicationYear(), magazin.getNumEdition());
 
                     }
 
@@ -84,16 +89,16 @@ public class Options {
             case SHOW_ALL_BOOKS -> {
 
                 if (books == null) {
-                    return MainSwitchEnum.NO_MAGAZINE;
+                    return MainSwitchEnum.NO_BOOKS;
 
                 } else {
 
                     System.out.printf(
-                            " -------------------------------------------------------------------------------------------------------- ");
+                            " -------------------------------------------------------------------------------------------------------- \n");
                     System.out.printf(
-                            "|      NOMBRE DEL LIBRO     |    AÑO DE PUBLICACION    |      NUMERO DE ISBN         |      AUTOR        | ");
+                            "|      NOMBRE DEL LIBRO     |    AÑO DE PUBLICACION    |      NUMERO DE ISBN         |      AUTOR        | \n");
                     System.out.printf(
-                            "|--------------------------------------------------------------------------------------------------------|");
+                            "|--------------------------------------------------------------------------------------------------------|\n");
 
                     for (Book book : books) {
                         System.out.printf("|      %s      |    %d    |    %d   |   %S   |%n", book.getTitle(),
@@ -104,13 +109,37 @@ public class Options {
                     return MainSwitchEnum.OPERATION_SUCCES;
                 }
             }
-            case SwitchEnum.SHOW_SPECIFIC_MAGAZINE -> {
-                if (books == null || magazines == null) {
+            case SHOW_SPECIFIC_MAGAZINE -> {
+                if (magazines == null) {
                     return MainSwitchEnum.NO_MAGAZINE;
 
                 } else {
 
-                    for (Magazine magazine : magazines) {
+                    Message.optionsToFindMagazine();
+                    optionToFind = (scan.nextInt());
+
+                    switch (optionToFind) {
+                        case 1 -> {
+                            System.out.println("digite el titulo");
+                                toFind = (scan.nextLine());
+   
+                            for (Magazine magazine : magazines) {
+                                
+                                if ((magazine.getTitle().contains(toFind))) {
+                                    System.out.println(magazine);
+                                }
+                            }
+
+                        }
+                        case 2 -> {
+
+                        }
+                        case 3 -> {
+
+                        }
+                        case 4 -> {
+
+                        }
 
                     }
 
@@ -122,6 +151,29 @@ public class Options {
                     return MainSwitchEnum.NO_MAGAZINE;
 
                 } else {
+
+                    for (Book book : books) {
+                        Message.optionsToFindBook();
+                        optionToFind = (scan.nextInt());
+
+                        switch (optionToFind) {
+                            case 1 -> {
+
+                            }
+                            case 2 -> {
+
+                            }
+                            case 3 -> {
+
+                            }
+                            case 4 -> {
+
+                            }
+                            case 5 -> {
+
+                            }
+                        }
+                    }
 
                     return MainSwitchEnum.OPERATION_SUCCES;
                 }

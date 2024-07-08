@@ -23,7 +23,7 @@ public class LibraryInventory {
             Message.optionsUser(nameUser);
             optionIntroduction = SwitchEnum.fromInt(scan.nextInt());
             Options options = new Options(optionIntroduction);
-            scan.close();
+            
             start = options.boop();
             switch (start) {
                 case OPERATION_SUCCES -> {
@@ -51,6 +51,7 @@ public class LibraryInventory {
                 default -> {
 
                     Message.improperOperation(nameUser);
+
                 }
 
             }
