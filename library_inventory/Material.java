@@ -2,9 +2,9 @@ package library_inventory;
 
 public class Material {
     private String title;
-    private int publicationYear;
+    private String publicationYear;
 
-    public Material(String title, int publicationYear) {
+    public Material(String title, String publicationYear) {
         this.title = title;
         this.publicationYear = publicationYear;
     }
@@ -29,10 +29,10 @@ System.out.println("Año de publicacion: "+ publicationYear );
     public void setTitle(String title) {
         this.title = title;
     }
-    public int getPublicationYear() {
+    public String getPublicationYear() {
         return publicationYear;
     }
-    public void setPublicationYear(int publicationYear) {
+    public void setPublicationYear(String publicationYear) {
         this.publicationYear = publicationYear;
     }
       

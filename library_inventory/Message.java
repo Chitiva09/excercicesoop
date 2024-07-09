@@ -61,6 +61,12 @@ public class Message {
         System.out.println(" ------------------------------------------------------------- ");
        
     }
+    public static void numberEditionError(String userName) {
+
+        System.out.printf(" -----------------------------ERROR-------------------------------\n");
+        System.out.printf("|   USUARI@ %s el numero de edicion debe ser de 6 digitos         |\n", userName);
+        System.out.printf(" ----------------------------------------------------------------- \n");
+    }
     public static void optionsToFindBook() {
         System.out.print(" -------------------------------------------------------------");
         System.out.print("|                  ¿Como desea buscar?                        |");

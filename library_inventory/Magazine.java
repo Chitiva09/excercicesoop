@@ -2,9 +2,9 @@ package library_inventory;
 
 public class Magazine extends Material {
 
-    private int numEdition;
+    private String numEdition;
 
- public Magazine (String title, int publicationYear, int numEdition){
+ public Magazine (String title, String publicationYear, String numEdition){
     super(title, publicationYear);
     this.numEdition=numEdition;
 
@@ -23,11 +23,11 @@ public void showInfo(){
 
 
 
-public int getNumEdition() {
+public String getNumEdition() {
     return numEdition;
 }
 
-public void setNumEdition(int numEdition) {
+public void setNumEdition(String numEdition) {
     this.numEdition = numEdition;
 }
 

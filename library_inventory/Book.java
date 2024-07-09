@@ -1,10 +1,10 @@
 package library_inventory;
 
 public class Book extends Material {
-    private int numberIsbn;
+    private String numberIsbn;
     private String author;
 
-    public Book(String title, int publicationYear, int numberIsbn, String author) {
+    public Book(String title, String publicationYear, String numberIsbn, String author) {
         super(title, publicationYear);
         this.author = author;
         this.numberIsbn = numberIsbn;
@@ -18,11 +18,11 @@ public class Book extends Material {
 
     }
 
-    public int getNumberIsbn() {
+    public String getNumberIsbn() {
         return numberIsbn;
     }
 
-    public void setNumberIsbn(int numberIsbn) {
+    public void setNumberIsbn(String numberIsbn) {
         this.numberIsbn = numberIsbn;
     }
 

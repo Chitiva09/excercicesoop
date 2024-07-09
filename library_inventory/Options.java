@@ -6,42 +6,33 @@ import java.util.Scanner;
 
 public class Options {
 
-    private SwitchEnum optionSwitcIntro;
     private String title;
-    private int publicationYear;
-    private int numEdition;
-    private int numberIsbn;
+    private String publicationYear;
+    private String numEdition;
+    private String numberIsbn;
     private String author;
     private int optionToFind;
     private String toFind;
 
     Scanner scan = new Scanner(System.in);
-    Book book = null;// este me sirve para inocializar el objeto book en null
-    Magazine magazine = null; //  este me sirve para inocializar el objeto magazine en null
     List<Magazine> magazines = new ArrayList<>(); // inicializacion del list magazines
-    List<Book> books = new ArrayList<>();//inicializacion del list books
+    List<Book> books = new ArrayList<>();// inicializacion del list books
 
-    //constructr para traer por parametro la opcion para ingresar en  el switch
-    public Options(SwitchEnum optionIntroduction) {
-        this.optionSwitcIntro = optionIntroduction;
+    // metodo para el switch que llame boop
+    public MainSwitchEnum boop(SwitchEnum optionIntroduction) {
 
-    }
-
-    //metodo para el switch que llame boop
-    public MainSwitchEnum boop() {
-        switch (optionSwitcIntro) {
+        switch (optionIntroduction) {
 
             case CREATE_MAGAZINE -> {
 
                 System.out.println("Cual es el titulo de su revista?");
                 title = scan.nextLine();
-                
+
                 System.out.println("Cual es el año de publicacion de ?" + title);
-                publicationYear = scan.nextInt();
-               
+                publicationYear = scan.nextLine();
+
                 System.out.println("Cual es el numero de edicion de ?" + title);
-                numEdition = scan.nextInt();
-              
+                numEdition = scan.nextLine();
 
                 Magazine magazine = new Magazine(title, publicationYear, numEdition);
                 magazines.add(magazine);// meto la informacion del objeto magazine en el list magazines
@@ -52,9 +43,9 @@ public class Options {
                 System.out.println("Cual es el titulo de su libro?");
                 title = scan.nextLine();
                 System.out.println("Cual es el año de publicacion de ?" + title);
-                publicationYear = scan.nextInt();
+                publicationYear = scan.nextLine();
                 System.out.println("Cual es el numero de ISBN de ?" + title);
-                numberIsbn = scan.nextInt();
+                numberIsbn = scan.nextLine();
                 System.out.println("Cual es el nombre del autor de ?" + title);
                 author = scan.nextLine();
 
@@ -65,8 +56,9 @@ public class Options {
             }
 
             case SHOW_ALL_MAGAZINES -> {
-                // con este if si el list magazines esta en null retorna un mensaje en el cual dice que list no tiene informacion
-                if ( magazines == null) {
+                // con este if si el list magazines esta en null retorna un mensaje en el cual
+                // dice que list no tiene informacion
+                if (magazines.isEmpty()) {
                     return MainSwitchEnum.NO_MAGAZINE;
 
                 } else {
@@ -91,7 +83,7 @@ public class Options {
 
             case SHOW_ALL_BOOKS -> {
 
-                if (books == null) {
+                if (books.isEmpty()) {
                     return MainSwitchEnum.NO_BOOKS;
 
                 } else {
@@ -113,7 +105,7 @@ public class Options {
                 }
             }
             case SHOW_SPECIFIC_MAGAZINE -> {
-                if (magazines == null) {
+                if (magazines.isEmpty()) {
                     return MainSwitchEnum.NO_MAGAZINE;
 
                 } else {
@@ -124,10 +116,10 @@ public class Options {
                     switch (optionToFind) {
                         case 1 -> {
                             System.out.println("digite el titulo");
-                                toFind = (scan.nextLine());
-   
+                            toFind = (scan.nextLine());
+
                             for (Magazine magazine : magazines) {
-                                
+
                                 if ((magazine.getTitle().contains(toFind))) {
                                     System.out.println(magazine);
                                 }
@@ -135,9 +127,32 @@ public class Options {
 
                         }
                         case 2 -> {
+                            System.out.println("digite el año de publicacion");
+                            toFind = (scan.nextLine());
 
+                            for (Magazine magazine : magazines) {
+
+                                if ((magazine.getPublicationYear().contains(toFind))) {
+                                    System.out.println(magazine);
+                                }
+                            }
                         }
                         case 3 -> {
+                            System.out.println("digite el numero de edicion");
+                            toFind = (scan.nextLine());
+                            if ((toFind.length() == 6)) {
+
+                                for (Magazine magazine : magazines) {
+
+                                    if ((magazine.getNumEdition().toUpperCase().contains(toFind.toUpperCase()))) {
+                                        System.out.println(magazine);
+                                    }
+                                }
+                                return MainSwitchEnum.OPERATION_SUCCES;
+                            }else{
+
+                                return  MainSwitchEnum.NUMBER_EDITION_ERROR;
+                            }
 
                         }
                         case 4 -> {
@@ -150,7 +165,7 @@ public class Options {
                 }
             }
             case SHOW_SPECIFIC_BOOK -> {
-                if (books == null) {
+                if (books.isEmpty()) {
                     return MainSwitchEnum.NO_MAGAZINE;
 
                 } else {
@@ -161,6 +176,15 @@ public class Options {
 
                         switch (optionToFind) {
                             case 1 -> {
+                                System.out.println("digite el titulo");
+                            toFind = (scan.nextLine());
+
+                            for (Book bookOne : books) {
+
+                                if ((book.getTitle().contains(toFind))) {
+                                    System.out.println(bookOne);
+                                }
+                            }
 
                             }
                             case 2 -> {
@@ -192,14 +216,6 @@ public class Options {
 
     }
 
-    public SwitchEnum getOptionSwitcIntro() {
-        return optionSwitcIntro;
-    }
-
-    public void setOptionSwitcIntro(SwitchEnum optionSwitcIntro) {
-        this.optionSwitcIntro = optionSwitcIntro;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -208,27 +224,27 @@ public class Options {
         this.title = title;
     }
 
-    public int getPublicationYear() {
+    public String getPublicationYear() {
         return publicationYear;
     }
 
-    public void setPublicationYear(int publicationYear) {
+    public void setPublicationYear(String publicationYear) {
         this.publicationYear = publicationYear;
     }
 
-    public int getNumEdition() {
+    public String getNumEdition() {
         return numEdition;
     }
 
-    public void setNumEdition(int numEdition) {
+    public void setNumEdition(String numEdition) {
         this.numEdition = numEdition;
     }
 
-    public int getNumberIsbn() {
+    public String getNumberIsbn() {
         return numberIsbn;
     }
 
-    public void setNumberIsbn(int numberIsbn) {
+    public void setNumberIsbn(String numberIsbn) {
         this.numberIsbn = numberIsbn;
     }
 
