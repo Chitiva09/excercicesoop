@@ -24,27 +24,33 @@ public class Message {
     public static void improperOperation (String userName) {
 
         System.out.printf(" ------------------------------:)--------------------------------\n");
-        System.out.printf("|         %s ud ha ingresado una opcion incorrecta               |\n", userName);
+        System.out.printf("|         %S ud ha ingresado una opcion incorrecta               |\n", userName);
         System.out.printf(" ---------------------------------------------------------------- \n");
     }
    
     public static void operationSucces(String userName) {
 
         System.out.printf(" ------------------------------:)--------------------------------\n");
-        System.out.printf("|           Su solicitud se a realizado con exito %s             |\n", userName);
+        System.out.printf("|           Su solicitud se a realizado con exito %S             |\n", userName);
         System.out.printf(" ---------------------------------------------------------------- \n");
     }
 
     public static void booksError(String userName) {
 
         System.out.printf(" -----------------------------ERROR-------------------------------\n");
-        System.out.printf("|              USUARI@ %s NO HAY LIBROS REGISTRADOS               |\n", userName);
+        System.out.printf("|              USUARI@ %S NO HAY LIBROS REGISTRADOS               |\n", userName);
+        System.out.printf(" ----------------------------------------------------------------- \n");
+    }
+    public static void notFound(String userName) {
+
+        System.out.printf(" -----------------------------ERROR-------------------------------\n");
+        System.out.printf("|              %S NO SE ENCONTRO ESA REVISTA               |\n", userName);
         System.out.printf(" ----------------------------------------------------------------- \n");
     }
     public static void magazinesError(String userName) {
 
         System.out.printf(" -----------------------------ERROR-------------------------------\n");
-        System.out.printf("|             USUARI@ %s NO HAY REVISTAS REGISTRADAS              |\n", userName);
+        System.out.printf("|             USUARI@ %S NO HAY REVISTAS REGISTRADAS              |\n", userName);
         System.out.printf(" ----------------------------------------------------------------- \n");
     }
     public static void optionsToFindMagazine() {
@@ -64,7 +70,20 @@ public class Message {
     public static void numberEditionError(String userName) {
 
         System.out.printf(" -----------------------------ERROR-------------------------------\n");
-        System.out.printf("|   USUARI@ %s el numero de edicion debe ser de 6 digitos         |\n", userName);
+        System.out.printf("|   USUARI@ %S el numero de edicion debe ser de 6 digitos         |\n", userName);
+        System.out.printf(" ----------------------------------------------------------------- \n");
+    }
+    public static void errorIntroduction() {
+
+        System.out.printf(" -----------------------------------ERROR--------------------------------------\n");
+        System.out.printf("|                      HAS INGRESADO UN DATO INCORRECTO                        |\n");
+        System.out.printf("|        El año debe tener 4 digitos y el numero de serie 6 digitos            |\n");
+        System.out.printf(" ------------------------------------------------------------------------------ \n");
+    }
+    public static void yearError(String userName) {
+
+        System.out.printf(" -----------------------------ERROR-------------------------------\n");
+        System.out.printf("|   USUARI@ %S usted introdujo un año incorrecto         |\n", userName);
         System.out.printf(" ----------------------------------------------------------------- \n");
     }
     public static void optionsToFindBook() {
@@ -86,7 +105,7 @@ public class Message {
     }
     public static void optionsUser(String userName) {
         System.out.printf(" -------------------------------------------------------------\n");
-        System.out.printf("|       ¿que opcion deseas realizar  %s                       |\n" , userName);
+        System.out.printf("|       ¿que opcion deseas realizar  %S                       |\n" , userName);
         System.out.printf("|-------------------------------------------------------------|\n");
         System.out.printf("| 1. Agregar revista                                          |\n");
         System.out.printf("|-------------------------------------------------------------|\n");
@@ -96,9 +115,9 @@ public class Message {
         System.out.printf("|-------------------------------------------------------------|\n");
         System.out.printf("| 4. Mostrar todas las libros                                 |\n");
         System.out.printf("|-------------------------------------------------------------|\n");
-        System.out.printf("| 5. Buscar libro                                             |\n");
+        System.out.printf("| 5. Buscar revista                                           |\n");
         System.out.printf("|-------------------------------------------------------------|\n");
-        System.out.printf("| 6. Buscar revista                                           |\n");
+        System.out.printf("| 6. Buscar libro                                             |\n");
         System.out.printf("|-------------------------------------------------------------|\n");
         System.out.printf("| 7. Salir                                                    |\n");
         System.out.printf(" ------------------------------------------------------------- \n");

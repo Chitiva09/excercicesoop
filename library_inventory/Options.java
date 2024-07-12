@@ -28,16 +28,33 @@ public class Options {
                 System.out.println("Cual es el titulo de su revista?");
                 title = scan.nextLine();
 
-                System.out.println("Cual es el año de publicacion de ?" + title);
-                publicationYear = scan.nextLine();
+                // utilizo este do-while para hacer un mini bucle para que si ingresan un año
+                // de mas o menos de 4 caracteres de error y se repita la peticion del dato
+                while(publicationYear.length() == 4); {
+                    System.out.println("Cual es el año de publicacion de ?" + title);
+                    publicationYear = scan.nextLine();
+                    if (publicationYear.length() == 4){
+                        break;
+                    }
+                        Message.errorIntroduction();
+                }
 
-                System.out.println("Cual es el numero de edicion de ?" + title);
-                numEdition = scan.nextLine();
+                // utilizo este do-while para hacer un mini bucle para que si ingresan un numero de serie
+                // de mas o menos de 6 caracteres de error y se repita la peticion del dato
+                while (numEdition.length() == 6); {
+                    System.out.println("Cual es el numero de edicion de ?" + title);
+                    numEdition = scan.nextLine();
+                    if (numEdition.length() == 6){
+                       break;
+                    }
+                    Message.errorIntroduction();
+                }
 
                 Magazine magazine = new Magazine(title, publicationYear, numEdition);
                 magazines.add(magazine);// meto la informacion del objeto magazine en el list magazines
 
                 return MainSwitchEnum.OPERATION_SUCCES;
+
             }
             case CREATE_BOOK -> {
                 System.out.println("Cual es el titulo de su libro?");
@@ -71,8 +88,7 @@ public class Options {
                             "|------------------------------------------------------------------------------------|\n");
 
                     for (Magazine magazin : magazines) {
-                        System.out.println("entro al for");
-                        System.out.printf("|      %s      |    %d    |    %d   |%n", magazin.getTitle(),
+                        System.out.printf("|      %s      |    %s    |    %s   |%n", magazin.getTitle(),
                                 magazin.getPublicationYear(), magazin.getNumEdition());
 
                     }
@@ -96,7 +112,7 @@ public class Options {
                             "|--------------------------------------------------------------------------------------------------------|\n");
 
                     for (Book book : books) {
-                        System.out.printf("|      %s      |    %d    |    %d   |   %S   |%n", book.getTitle(),
+                        System.out.printf("|      %s      |    %s    |    %s   |   %S   |%n", book.getTitle(),
                                 book.getPublicationYear(), book.getNumberIsbn(), book.getAuthor());
 
                     }
@@ -112,6 +128,7 @@ public class Options {
 
                     Message.optionsToFindMagazine();
                     optionToFind = (scan.nextInt());
+                    scan.nextLine();
 
                     switch (optionToFind) {
                         case 1 -> {
@@ -120,21 +137,48 @@ public class Options {
 
                             for (Magazine magazine : magazines) {
 
-                                if ((magazine.getTitle().contains(toFind))) {
-                                    System.out.println(magazine);
+                                if (!magazine.getTitle().toUpperCase().contains(toFind.toUpperCase())) {
+                                    return MainSwitchEnum.NOT_FOUND_MAGAZINE;
+
+                                } else if ((magazine.getTitle().toUpperCase().contains(toFind))) {
+
+                                    System.out.printf(
+                                            " ------------------------------------------------------------------------------------ \n");
+                                    System.out.printf(
+                                            "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |\n");
+                                    System.out.printf(
+                                            "|------------------------------------------------------------------------------------|\n");
+
+                                    System.out.printf("|      %s      |    %s    |    %s   |%n", magazine.getTitle(),
+                                            magazine.getPublicationYear(), magazine.getNumEdition());
+
                                 }
                             }
-
                         }
                         case 2 -> {
                             System.out.println("digite el año de publicacion");
                             toFind = (scan.nextLine());
+                            if ((toFind.length() == 4)) {
 
-                            for (Magazine magazine : magazines) {
+                                for (Magazine magazine : magazines) {
 
-                                if ((magazine.getPublicationYear().contains(toFind))) {
-                                    System.out.println(magazine);
+                                    if ((magazine.getPublicationYear().contains(toFind))) {
+
+                                        System.out.printf(
+                                                " ------------------------------------------------------------------------------------ \n");
+                                        System.out.printf(
+                                                "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |\n");
+                                        System.out.printf(
+                                                "|------------------------------------------------------------------------------------|\n");
+
+                                        System.out.printf("|      %s      |    %s    |    %s   |%n",
+                                                magazine.getTitle(),
+                                                magazine.getPublicationYear(), magazine.getNumEdition());
+
+                                    }
                                 }
+                            } else {
+                                return MainSwitchEnum.YEAR_ERROR;
                             }
                         }
                         case 3 -> {
@@ -145,13 +189,24 @@ public class Options {
                                 for (Magazine magazine : magazines) {
 
                                     if ((magazine.getNumEdition().toUpperCase().contains(toFind.toUpperCase()))) {
-                                        System.out.println(magazine);
+
+                                        System.out.printf(
+                                                " ------------------------------------------------------------------------------------ \n");
+                                        System.out.printf(
+                                                "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |\n");
+                                        System.out.printf(
+                                                "|------------------------------------------------------------------------------------|\n");
+
+                                        System.out.printf("|      %s      |    %s    |    %s   |%n",
+                                                magazine.getTitle(),
+                                                magazine.getPublicationYear(), magazine.getNumEdition());
+
                                     }
                                 }
                                 return MainSwitchEnum.OPERATION_SUCCES;
-                            }else{
+                            } else {
 
-                                return  MainSwitchEnum.NUMBER_EDITION_ERROR;
+                                return MainSwitchEnum.NUMBER_EDITION_ERROR;
                             }
 
                         }
@@ -173,20 +228,13 @@ public class Options {
                     for (Book book : books) {
                         Message.optionsToFindBook();
                         optionToFind = (scan.nextInt());
+                        scan.nextLine();
 
                         switch (optionToFind) {
                             case 1 -> {
-                                System.out.println("digite el titulo");
-                            toFind = (scan.nextLine());
-
-                            for (Book bookOne : books) {
-
-                                if ((book.getTitle().contains(toFind))) {
-                                    System.out.println(bookOne);
-                                }
-                            }
 
                             }
+
                             case 2 -> {
 
                             }

@@ -9,16 +9,15 @@ public class LibraryInventory {
         SwitchEnum optionIntroduction = null;
         String nameUser = "";
         MainSwitchEnum start;
-        Book book = null;
-        Magazine magazine = null;
         Options options = new Options();
+        Message message = null;
 
         while (optionIntroduction != SwitchEnum.GO_OUT) {
 
-            if ((book == null) && (magazine == null)) {
+            if (message == null) {
                 Message.createAcount();
                 nameUser = (scan.nextLine());
-                Message message = new Message(nameUser);
+                message = new Message(nameUser);
             } else {
 
                 Message.optionsUser(nameUser);
@@ -37,9 +36,7 @@ public class LibraryInventory {
                     case IMPROPER_OPERATION -> {
                         Message.improperOperation(nameUser);
                     }
-                    case OPTION_NOT_FOUND -> {
 
-                    }
                     case NO_MAGAZINE -> {
                         Message.magazinesError(nameUser);
 
@@ -48,10 +45,17 @@ public class LibraryInventory {
                         Message.booksError(nameUser);
 
                     }
-                    case NUMBER_EDITION_ERROR->{
+                    case NUMBER_EDITION_ERROR -> {
 
                         Message.numberEditionError(nameUser);
                     }
+                    case NOT_FOUND_MAGAZINE -> {
+                        Message.notFound(nameUser);
+                    }
+                    case YEAR_ERROR -> {
+                        Message.yearError(nameUser);
+                    }
+
                     default -> {
 
                         Message.improperOperation(nameUser);
