@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Options {
 
     private String title;
-    private String publicationYear="";
-    private String numEdition="";
+    private String publicationYear = "";
+    private String numEdition = "";
     private String numberIsbn;
     private String author;
     private int optionToFind;
@@ -30,28 +30,32 @@ public class Options {
 
                 // utilizo este do-while para hacer un mini bucle para que si ingresan un año
                 // de mas o menos de 4 caracteres de error y se repita la peticion del dato
-                while(publicationYear.length() != 4) {
-                    System.out.println("Cual es el año de publicacion de ?" + title);
+                while (publicationYear.length() != 4) {
+                    System.out.println("Cual es el año de publicacion de? " + title);
                     publicationYear = scan.nextLine();
-                    if (publicationYear.length() != 4){
+                    if (publicationYear.length() != 4) {
                         Message.errorIntroduction();
                     }
-   ;
+
                 }
 
-                // utilizo este do-while para hacer un mini bucle para que si ingresan un numero de serie
+                // utilizo este do-while para hacer un mini bucle para que si ingresan un numero
+                // de serie
                 // de mas o menos de 6 caracteres de error y se repita la peticion del dato
                 while (numEdition.length() != 6) {
                     System.out.println("Cual es el numero de edicion de ?" + title);
                     numEdition = scan.nextLine();
-                    if (numEdition.length() != 6){
+                    if (numEdition.length() != 6) {
                         Message.errorIntroduction();
                     }
-  
+
                 }
 
                 Magazine magazine = new Magazine(title, publicationYear, numEdition);
                 magazines.add(magazine);// meto la informacion del objeto magazine en el list magazines
+
+                publicationYear = "";
+                numEdition = "";
 
                 return MainSwitchEnum.OPERATION_SUCCES;
 
@@ -88,7 +92,7 @@ public class Options {
                             "|------------------------------------------------------------------------------------|\n");
 
                     for (Magazine magazin : magazines) {
-                        System.out.printf("|      %s      |    %s    |    %s   |%n", magazin.getTitle(),
+                        System.out.printf("|%20s|%20s|%20s|%n", magazin.getTitle(),
                                 magazin.getPublicationYear(), magazin.getNumEdition());
 
                     }
@@ -132,30 +136,38 @@ public class Options {
 
                     switch (optionToFind) {
                         case 1 -> {
+                            List<Magazine> result = new ArrayList<>();
                             System.out.println("digite el titulo");
                             toFind = (scan.nextLine());
 
                             for (Magazine magazine : magazines) {
 
-                                if (!magazine.getTitle().toUpperCase().contains(toFind.toUpperCase())) {
-                                    return MainSwitchEnum.NOT_FOUND_MAGAZINE;
-
-                                } else if ((magazine.getTitle().toUpperCase().contains(toFind))) {
-
-                                    System.out.printf(
-                                            " ------------------------------------------------------------------------------------ \n");
-                                    System.out.printf(
-                                            "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |\n");
-                                    System.out.printf(
-                                            "|------------------------------------------------------------------------------------|\n");
-
-                                    System.out.printf("|      %s      |    %s    |    %s   |%n", magazine.getTitle(),
-                                            magazine.getPublicationYear(), magazine.getNumEdition());
-
+                                if (magazine.getTitle().toUpperCase().contains(toFind.toUpperCase())) {
+                                    result.add(magazine);
                                 }
                             }
+                            if (result.isEmpty()) {
+                                Message.notFound();
+                            } else {
+                                System.out.printf(
+                                        " ------------------------------------------------------------------------------------ \n");
+                                System.out.printf(
+                                        "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |\n");
+                                System.out.printf(
+                                        "|------------------------------------------------------------------------------------|\n");
+
+                                for (Magazine resultMagazine : result) {
+                                    System.out.printf("|%20s|%20s|%20s|%n",
+                                            resultMagazine.getTitle(),
+                                            resultMagazine.getPublicationYear(), resultMagazine.getNumEdition());
+                                }
+
+                                return MainSwitchEnum.OPERATION_SUCCES;
+                            }
+
                         }
                         case 2 -> {
+                            List<Magazine> resultYearPublication = new ArrayList<>();
                             System.out.println("digite el año de publicacion");
                             toFind = (scan.nextLine());
                             if ((toFind.length() == 4)) {
@@ -163,25 +175,33 @@ public class Options {
                                 for (Magazine magazine : magazines) {
 
                                     if ((magazine.getPublicationYear().contains(toFind))) {
-
-                                        System.out.printf(
-                                                " ------------------------------------------------------------------------------------ \n");
-                                        System.out.printf(
-                                                "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |\n");
-                                        System.out.printf(
-                                                "|------------------------------------------------------------------------------------|\n");
-
-                                        System.out.printf("|      %s      |    %s    |    %s   |%n",
-                                                magazine.getTitle(),
-                                                magazine.getPublicationYear(), magazine.getNumEdition());
-
+                                        resultYearPublication.add(magazine);
                                     }
                                 }
+                                if (resultYearPublication.isEmpty()) {
+                                    Message.notFound();
+                                } else {
+                                    System.out.printf(
+                                            " ------------------------------------------------------------------------------------ \n");
+                                    System.out.printf(
+                                            "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |\n");
+                                    System.out.printf(
+                                            "|------------------------------------------------------------------------------------|\n");
+                                    for (Magazine resultMagazineYear : resultYearPublication) {
+
+                                        System.out.printf("|%-32s|%-32s|%-32s|%n",
+                                                resultMagazineYear.getTitle(),
+                                                resultMagazineYear.getPublicationYear(),
+                                                resultMagazineYear.getNumEdition());
+                                    }
+                                }
+                                return MainSwitchEnum.OPERATION_SUCCES;
                             } else {
                                 return MainSwitchEnum.YEAR_ERROR;
                             }
                         }
                         case 3 -> {
+                            List<Magazine> resultNumEdition = new ArrayList<>();
                             System.out.println("digite el numero de edicion");
                             toFind = (scan.nextLine());
                             if ((toFind.length() == 6)) {
@@ -189,20 +209,27 @@ public class Options {
                                 for (Magazine magazine : magazines) {
 
                                     if ((magazine.getNumEdition().toUpperCase().contains(toFind.toUpperCase()))) {
-
-                                        System.out.printf(
-                                                " ------------------------------------------------------------------------------------ \n");
-                                        System.out.printf(
-                                                "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |\n");
-                                        System.out.printf(
-                                                "|------------------------------------------------------------------------------------|\n");
-
-                                        System.out.printf("|      %s      |    %s    |    %s   |%n",
-                                                magazine.getTitle(),
-                                                magazine.getPublicationYear(), magazine.getNumEdition());
+                                        resultNumEdition.add(magazine);
 
                                     }
                                 }
+
+                                System.out.printf(
+                                        " ------------------------------------------------------------------------------------ \n");
+                                System.out.printf(
+                                        "|      NOMBRE DE LA REVISTA      |    AÑO DE PUBLICACION    |    NUMERO DE EDICION   |\n");
+                                System.out.printf(
+                                        "|------------------------------------------------------------------------------------|\n");
+
+                                for (Magazine resultMagazinNumEdition : resultNumEdition) {
+
+                                    System.out.printf("|%32s|%32s|%32s|%n",
+                                            resultMagazinNumEdition.getTitle(),
+                                            resultMagazinNumEdition.getPublicationYear(),
+                                            resultMagazinNumEdition.getNumEdition());
+
+                                }
+
                                 return MainSwitchEnum.OPERATION_SUCCES;
                             } else {
 

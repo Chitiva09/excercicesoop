@@ -41,10 +41,10 @@ public class Message {
         System.out.printf("|              USUARI@ %S NO HAY LIBROS REGISTRADOS               |\n", userName);
         System.out.printf(" ----------------------------------------------------------------- \n");
     }
-    public static void notFound(String userName) {
+    public static void notFound() {
 
         System.out.printf(" -----------------------------ERROR-------------------------------\n");
-        System.out.printf("|              %S NO SE ENCONTRO ESA REVISTA               |\n", userName);
+        System.out.printf("|                 NO SE ENCONTRO ESA REVISTA                      |\n");
         System.out.printf(" ----------------------------------------------------------------- \n");
     }
     public static void magazinesError(String userName) {

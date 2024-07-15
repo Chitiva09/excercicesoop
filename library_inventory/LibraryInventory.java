@@ -49,9 +49,8 @@ public class LibraryInventory {
 
                         Message.numberEditionError(nameUser);
                     }
-                    case NOT_FOUND_MAGAZINE -> {
-                        Message.notFound(nameUser);
-                    }
+                   
+                    
                     case YEAR_ERROR -> {
                         Message.yearError(nameUser);
                     }
