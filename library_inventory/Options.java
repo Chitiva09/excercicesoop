@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Options {
 
     private String title;
-    private String publicationYear;
-    private String numEdition;
+    private String publicationYear="";
+    private String numEdition="";
     private String numberIsbn;
     private String author;
     private int optionToFind;
@@ -30,24 +30,24 @@ public class Options {
 
                 // utilizo este do-while para hacer un mini bucle para que si ingresan un año
                 // de mas o menos de 4 caracteres de error y se repita la peticion del dato
-                while(publicationYear.length() == 4); {
+                while(publicationYear.length() != 4) {
                     System.out.println("Cual es el año de publicacion de ?" + title);
                     publicationYear = scan.nextLine();
-                    if (publicationYear.length() == 4){
-                        break;
-                    }
+                    if (publicationYear.length() != 4){
                         Message.errorIntroduction();
+                    }
+   ;
                 }
 
                 // utilizo este do-while para hacer un mini bucle para que si ingresan un numero de serie
                 // de mas o menos de 6 caracteres de error y se repita la peticion del dato
-                while (numEdition.length() == 6); {
+                while (numEdition.length() != 6) {
                     System.out.println("Cual es el numero de edicion de ?" + title);
                     numEdition = scan.nextLine();
-                    if (numEdition.length() == 6){
-                       break;
+                    if (numEdition.length() != 6){
+                        Message.errorIntroduction();
                     }
-                    Message.errorIntroduction();
+  
                 }
 
                 Magazine magazine = new Magazine(title, publicationYear, numEdition);
@@ -211,7 +211,7 @@ public class Options {
 
                         }
                         case 4 -> {
-
+                            return MainSwitchEnum.GO_OUT;
                         }
 
                     }
